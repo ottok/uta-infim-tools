@@ -1,0 +1,28 @@
+<dataConfig>
+        <dataSource name="wpdatareader" type="FileDataSource" encoding="UTF-8" />
+        <document>
+        <entity name="wpdata" rootEntity="false" dataSource="null"
+             processor="FileListEntityProcessor"
+             fileName="^.*\.xml$" recursive="true"
+             baseDir="/usr/share/solr/data/aineisto/documents"
+             >
+          <entity name="article" rootEntity="true"
+		dataSource="wpdatareader"
+                processor="XPathEntityProcessor"
+		url="${wpdata.fileAbsolutePath}"
+                stream="true"
+                forEach="/article"
+                transformer="RegexTransformer,DateFormatTransformer"
+                >
+             <field column="id"        xpath="/article/header/id" />
+             <field column="title"     xpath="/article/header/title" />
+             <field column="revision"  xpath="/article/header/revision/id" />
+             <field column="user"      xpath="/article/header/revision/contributor/username" />
+             <field column="userId"    xpath="/article/header/revision/contributor/id" />
+             <field column="text"      xpath="/article/bdy" />
+             <field column="timestamp" xpath="/article/header/revision/timestamp" dateTimeFormat="yyyy-MM-dd'T'hh:mm:ss'Z'" />
+           </entity>
+	</entity>
+        </document>
+</dataConfig>
+

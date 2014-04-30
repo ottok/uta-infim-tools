@@ -1,0 +1,11 @@
+{
+  "name": "xml-importer-for-sphinx",
+  "version": "0.9.0",
+  "author": "Otto Kekäläinen <otto@seravo.fi>",
+  "dependencies": {
+    "mariasql": "~0.1.20",
+    "xmldom": "~0.1.19",
+    "xpath": "0.0.6",
+    "async": "~0.2.10"
+  }
+}
